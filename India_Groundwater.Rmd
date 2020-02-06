@@ -1,0 +1,35 @@
+---
+title: "Groundwater Data"
+author: "Geographical profile of 20 million job applicants in India 2018-19"
+output: html_document # pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(out.width='700px', dpi=100, echo=T) # Chaneg
+# knitr::opts_chunk$set(echo = TRUE)
+library(wbstats); library(ggplot2); library(treemapify);library(treemap)
+library(readxl); library(scales); library(sf); library(leaflet);library(colorspace)
+load('/Users/parthkhare/Desktop/Projects/RRB/data/Rrb_16_subdst_poly.RData')
+
+```
+
+
+
+
+## Demographic Dividend: 2017-18
+Youth Population from Atlas of Human Settlements [Gridded Population of India (GHSL)]
+```{r, echo=F, message=F}
+var <- 'ypop'
+qpal <- colorQuantile("RdYlBu", domain = sr$var, n = 4)
+
+leaflet(sr) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addPolygons(color = "#B0B0B0", weight = 1, smoothFactor = 0.5,
+              opacity = 0.2, fillOpacity = 0.8,
+              fillColor = ~qpal(get(var)),
+              highlightOptions = highlightOptions(color = "white", weight = 2,
+                                                   bringToFront = TRUE)) %>%
+   addLegend("bottomright", pal = qpal, values = ~get(var),
+            opacity = 0.3, title = "Applicants")
+```
+

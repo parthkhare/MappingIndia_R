@@ -1,11 +1,11 @@
 ---
 title: "Mapping Indian Data"
-author: "Geographical profile of 20 million job applicants in India 2018-19"
-output: html_document # pdf_document
+author: "Using geo-spatial packages in R"
+output: rmarkdown::github_document #html_document # pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width='600px', dpi=100, echo=T) # Chaneg
+knitr::opts_chunk$set(out.width='700px', dpi=200, echo=T) # Chaneg
 # knitr::opts_chunk$set(echo = TRUE)
 library(wbstats); library(ggplot2); library(treemapify);library(treemap)
 library(readxl); library(scales); library(sf); library(leaflet);library(colorspace)
@@ -32,7 +32,7 @@ pro <- read.csv("/Users/parthkhare/Desktop/Projects/Protests India/2019-06-01-20
 ```
 
 
-## Mapping India
+## Mapping India: Fixing Span
 ```{r}
 # Fix Centroid for map Scale
 india_centroid <- c(68.18625, 6, 97.41529, 37)                 # Optimal
@@ -70,7 +70,6 @@ fix_crop_st + geom_point(aes(x=lg, y=lt),data=r2010,
 
 ```
 
-It's tricky to get the span right 
 
 ## Display All Map Types
 ```{r, echo=F, message=F}
